@@ -2,7 +2,14 @@ const { Client } = require("@opensearch-project/opensearch");
 const config = require("../config");
 
 const client = new Client({
-  node: config.opensearchNode
+  node: config.opensearchNode,
+  ssl: {
+    rejectUnauthorized: false
+  },
+  auth: {
+    username: "admin",
+    password: process.env.OPENSEARCH_INITIAL_ADMIN_PASSWORD
+  }
 });
 
 async function indexDocument(index, document) {

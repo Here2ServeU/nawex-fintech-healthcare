@@ -69,6 +69,10 @@ cp .env.example .env
 docker-compose up --build
 ```
 
+If you already have an older `.env`, update `KAFKA_BROKER` to `kafka:29092` so the API container uses the internal Kafka listener.
+If port `5000` is already in use on your machine, set `HOST_API_PORT=5001` or another open port in `.env`.
+OpenSearch 2.12 and later also requires `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in `.env` for the container to start. Use a strong password that is not similar to `admin`, or the container will exit during boot validation.
+
 ## Cleanup
 
 ```bash
@@ -82,11 +86,126 @@ make clean
 
 ## Services
 
-- API: `http://localhost:5000`
+- API: `http://localhost:5001` by default, or `http://localhost:${HOST_API_PORT}`
 - Dashboard: `http://localhost:3000`
-- OpenSearch: `http://localhost:9200`
+- OpenSearch API: `https://localhost:9200`
+- OpenSearch Dashboards: `http://localhost:5601`
 - MongoDB: `mongodb://localhost:27017`
-- Kafka: `localhost:9092`
+- Kafka from host: `localhost:9092`
+- Kafka from containers: `kafka:29092`
+
+## Validate The Platform
+
+After the stack starts, validate each layer with the checks below.
+
+### 1. Confirm containers are running
+
+```bash
+docker compose ps
+```
+
+Expected result:
+
+- `api` is up
+- `dashboard` is up
+- `kafka` is up
+- `mongodb` is up
+- `opensearch` is up
+- `dashboards` is up
+
+### 2. Validate the API
+
+```bash
+curl http://localhost:5001/api/health
+```
+
+Expected result:
+
+```json
+{"status":"ok","service":"nerp-api"}
+```
+
+### 3. Validate the React dashboard
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+Expected result:
+
+- The NERP dashboard loads in the browser
+
+### 4. Validate OpenSearch
+
+OpenSearch runs on HTTPS with authentication. Do not use `http://localhost:9200` in the browser.
+
+```bash
+source .env
+curl -k -u "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200
+```
+
+Expected result:
+
+- JSON response containing OpenSearch cluster information
+
+### 5. Validate OpenSearch Dashboards
+
+Open:
+
+```text
+http://localhost:5601
+```
+
+Expected result:
+
+- OpenSearch Dashboards login or application screen loads
+
+### 6. Validate sample ingestion
+
+Seed both domains:
+
+```bash
+./scripts/seed-fintech-data.sh
+./scripts/seed-healthcare-data.sh
+```
+
+Expected result:
+
+- Each script returns a `202` response with a published event payload
+
+You can also test the ingestion endpoints directly:
+
+```bash
+curl -X POST http://localhost:5001/api/fintech/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"transaction_id":"txn-1002","user_id":"user-42","amount":210.75,"currency":"USD","merchant":"Northwind Health","location":"Dallas"}'
+```
+
+```bash
+curl -X POST http://localhost:5001/api/healthcare/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"patient_id":"patient-3002","encounter_id":"enc-144","event_type":"lab_result","severity":"low","department":"oncology"}'
+```
+
+### 7. Troubleshooting checks
+
+If the API does not start:
+
+- Confirm `HOST_API_PORT` is not already in use
+- Confirm `.env` contains `KAFKA_BROKER=kafka:29092`
+
+If OpenSearch does not start:
+
+- Confirm `.env` contains `OPENSEARCH_INITIAL_ADMIN_PASSWORD`
+- Confirm the password is strong and not similar to `admin`
+- Use `https://localhost:9200`, not `http://localhost:9200`
+
+If Dashboards cannot resolve OpenSearch:
+
+- Run `docker compose ps` and confirm the `opensearch` service is up
+- Check `docker compose logs opensearch --tail=100`
 
 ## Course Goal
 
