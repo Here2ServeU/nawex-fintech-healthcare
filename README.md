@@ -4,6 +4,8 @@ A production-style course repository built on the NERP vision for FinTech and He
 
 Author: Emmanuel Naweji
 
+Bio: This platform is a combination of Emmanuel Naweji's PhD research and professional work experience, bringing together academic research depth and enterprise implementation patterns for FinTech and Healthcare systems.
+
 This platform demonstrates a layered architecture for modern regulated workloads:
 
 - Ingestion Layer -> Kafka
@@ -66,6 +68,17 @@ MongoDB + OpenSearch
 cp .env.example .env
 docker-compose up --build
 ```
+
+## Cleanup
+
+```bash
+make down
+make clean
+```
+
+`make down` stops the local stack.
+
+`make clean` stops the stack and removes local Docker volumes and orphaned containers. This deletes persisted MongoDB and OpenSearch data created by the project.
 
 ## Services
 
