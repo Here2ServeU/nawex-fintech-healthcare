@@ -1,0 +1,13 @@
+{
+  "topic": "fintech-transactions",
+  "description": "Real-time transaction ingestion for fraud analytics and risk scoring",
+  "fields": [
+    "transaction_id",
+    "user_id",
+    "amount",
+    "currency",
+    "merchant",
+    "location",
+    "timestamp"
+  ]
+}

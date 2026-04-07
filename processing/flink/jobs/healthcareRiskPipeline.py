@@ -1,0 +1,14 @@
+from pyflink.datastream import StreamExecutionEnvironment
+
+
+def main():
+    env = StreamExecutionEnvironment.get_execution_environment()
+    env.set_parallelism(1)
+
+    # Placeholder:
+    # Kafka source -> patient risk enrichment -> MongoDB/OpenSearch sink
+    print("NERP Healthcare Flink pipeline initialized")
+
+
+if __name__ == "__main__":
+    main()

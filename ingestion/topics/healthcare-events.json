@@ -1,0 +1,12 @@
+{
+  "topic": "healthcare-events",
+  "description": "Real-time healthcare event ingestion for patient monitoring and analytics",
+  "fields": [
+    "patient_id",
+    "encounter_id",
+    "event_type",
+    "severity",
+    "department",
+    "timestamp"
+  ]
+}

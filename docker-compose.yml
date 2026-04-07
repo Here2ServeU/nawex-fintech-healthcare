@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   zookeeper:
     image: bitnami/zookeeper:latest
@@ -16,26 +17,62 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
 
   mongodb:
     image: mongo:6
+    container_name: nerp-mongodb
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   opensearch:
     image: opensearchproject/opensearch:2
+    container_name: nerp-opensearch
     environment:
       - discovery.type=single-node
       - plugins.security.disabled=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
       - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:2
+    container_name: nerp-opensearch-dashboards
+    ports:
+      - "5601:5601"
+    environment:
+      - OPENSEARCH_HOSTS=["http://opensearch:9200"]
+    depends_on:
+      - opensearch
 
   api:
-    build: ./api
+    build:
+      context: ./api
+    container_name: nerp-api
     ports:
       - "5000:5000"
+    depends_on:
+      - kafka
+      - mongodb
+      - opensearch
+    env_file:
+      - .env
 
   dashboard:
-    build: ./dashboard
+    build:
+      context: ./dashboard
+    container_name: nerp-dashboard
     ports:
       - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:
+  opensearch_data:

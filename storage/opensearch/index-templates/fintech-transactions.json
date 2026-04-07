@@ -1,0 +1,8 @@
+{
+  "index_patterns": ["fintech-transactions*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    }
+  }
+}

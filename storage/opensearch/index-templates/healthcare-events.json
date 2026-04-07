@@ -1,0 +1,8 @@
+{
+  "index_patterns": ["healthcare-events*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    }
+  }
+}
