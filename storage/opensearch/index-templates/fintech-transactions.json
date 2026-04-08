@@ -1,8 +1,22 @@
 {
-  "index_patterns": ["fintech-transactions*"],
+  "index_patterns": [
+    "fintech-transactions*"
+  ],
+  "priority": 200,
+  "composed_of": [
+    "nerp-common",
+    "nerp-fintech-fields"
+  ],
   "template": {
+    "aliases": {
+      "nerp-fintech": {}
+    },
     "settings": {
-      "number_of_shards": 1
+      "index.refresh_interval": "1s"
     }
+  },
+  "version": 1,
+  "_meta": {
+    "description": "Composable index template for NERP fintech transaction search data"
   }
 }

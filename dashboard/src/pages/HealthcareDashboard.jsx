@@ -1,15 +1,43 @@
 import React from "react";
+import DomainDashboard from "../components/DomainDashboard";
 
 export default function HealthcareDashboard() {
   return (
-    <section>
-      <h2>Healthcare Dashboard</h2>
-      <ul>
-        <li>Patient event ingestion status</li>
-        <li>Operational event monitoring</li>
-        <li>Searchable encounter analytics</li>
-        <li>Risk and workflow visibility</li>
-      </ul>
-    </section>
+    <DomainDashboard
+      title="Healthcare Operations"
+      description="Monitor patient event flow, inspect encounter activity, and search OpenSearch for departments, severity, and clinical event signals."
+      accent="#9a3412"
+      recordPath="/api/healthcare/records"
+      searchPath="/api/healthcare/search"
+      searchPlaceholder="Search patient events, departments, severities, or encounter IDs"
+      summaryBuilder={(records) => {
+        const criticalCount = records.filter((record) => String(record.severity || "").toLowerCase() === "high").length;
+        const departments = new Set(records.map((record) => record.department).filter(Boolean)).size;
+        const encounters = new Set(records.map((record) => record.encounter_id).filter(Boolean)).size;
+
+        return [
+          {
+            title: "Patient Events",
+            value: records.length,
+            subtitle: "Records available in the access layer"
+          },
+          {
+            title: "Critical Signals",
+            value: criticalCount,
+            subtitle: "Events marked with high severity"
+          },
+          {
+            title: "Departments",
+            value: departments,
+            subtitle: "Distinct operational departments"
+          },
+          {
+            title: "Encounters",
+            value: encounters,
+            subtitle: "Unique encounter IDs in current records"
+          }
+        ];
+      }}
+    />
   );
 }

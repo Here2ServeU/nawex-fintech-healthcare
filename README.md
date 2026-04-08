@@ -71,7 +71,121 @@ docker-compose up --build
 
 If you already have an older `.env`, update `KAFKA_BROKER` to `kafka:29092` so the API container uses the internal Kafka listener.
 If port `5000` is already in use on your machine, set `HOST_API_PORT=5001` or another open port in `.env`.
-OpenSearch 2.12 and later also requires `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in `.env` for the container to start. Use a strong password that is not similar to `admin`, or the container will exit during boot validation.
+OpenSearch 2.12 and later also requires `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in `.env` for the container to start. Use a value with at least one uppercase letter, one lowercase letter, one digit, and one special character, and do not use a password similar to `admin`, or the container will exit during boot validation.
+
+## Run The Integrated Dashboard
+
+Use the steps below to get the React dashboard working with both FinTech and Healthcare data.
+
+### 1. Create the environment file
+
+```bash
+cp .env.example .env
+```
+
+Confirm `.env` includes:
+
+- `KAFKA_BROKER=kafka:29092`
+- `OPENSEARCH_NODE=https://opensearch:9200`
+- A valid `OPENSEARCH_INITIAL_ADMIN_PASSWORD`
+
+### 2. Start the local platform
+
+```bash
+docker compose up --build
+```
+
+Wait until `api`, `dashboard`, `opensearch`, `dashboards`, `mongodb`, `kafka`, and `zookeeper` are running.
+
+### 3. Verify the API is healthy
+
+```bash
+curl http://localhost:5001/api/health
+```
+
+Expected result:
+
+```json
+{"status":"ok","service":"nerp-api"}
+```
+
+### 4. Verify OpenSearch is reachable
+
+```bash
+source .env
+curl -k -u "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200
+```
+
+Expected result:
+
+- JSON response containing OpenSearch cluster information
+
+### 5. Seed FinTech and Healthcare sample events
+
+```bash
+./scripts/seed-fintech-data.sh
+./scripts/seed-healthcare-data.sh
+```
+
+Expected result:
+
+- Each script returns a `202` response with a published event payload
+
+### 6. Open the integrated React dashboard
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+Expected result:
+
+- A single page with both the `FinTech Intelligence` and `Healthcare Operations` sections
+- Recent records loaded from the API
+- Search boxes for OpenSearch-backed queries in each domain
+
+### 7. Run domain searches from the UI
+
+Try searches such as:
+
+- FinTech: merchant names, user IDs, transaction IDs, locations
+- Healthcare: patient IDs, encounter IDs, departments, severity values
+
+The integrated dashboard uses:
+
+- `GET /api/fintech/records`
+- `GET /api/fintech/search?q=...`
+- `GET /api/healthcare/records`
+- `GET /api/healthcare/search?q=...`
+
+### 8. Optional: open OpenSearch Dashboards separately
+
+Open:
+
+```text
+http://localhost:5601
+```
+
+This is separate from the React dashboard. The React dashboard at `http://localhost:3000` is the integrated app view for both domains.
+
+### 9. Optional: install the OpenSearch template demo
+
+This project includes a composable OpenSearch index template demo for both domains. It installs shared component templates, domain index templates, and Dashboards index patterns automatically.
+
+Run:
+
+```bash
+./scripts/setup-opensearch-dashboards.sh
+```
+
+This creates:
+
+- component templates for common, fintech, and healthcare fields
+- index templates for `fintech-transactions*` and `healthcare-events*`
+- Dashboards index patterns for both indexes
+
+See [storage/opensearch/dashboards.md](/Users/emmanuelnaweji/nerp-fintech-healthcare/storage/opensearch/dashboards.md) for the full demo details.
 
 ## Cleanup
 
@@ -199,8 +313,14 @@ If the API does not start:
 If OpenSearch does not start:
 
 - Confirm `.env` contains `OPENSEARCH_INITIAL_ADMIN_PASSWORD`
-- Confirm the password is strong and not similar to `admin`
+- Confirm the password includes uppercase, lowercase, digit, and special characters, and is not similar to `admin`
 - Use `https://localhost:9200`, not `http://localhost:9200`
+
+If Dashboards logs show `getaddrinfo ENOTFOUND opensearch`:
+
+- Check `docker compose logs opensearch --tail=100`
+- If OpenSearch reports password validation failure, update `OPENSEARCH_INITIAL_ADMIN_PASSWORD` in `.env`
+- Restart the affected services with `docker compose up -d opensearch dashboards`
 
 If Dashboards cannot resolve OpenSearch:
 

@@ -1,0 +1,32 @@
+{
+  "template": {
+    "mappings": {
+      "properties": {
+        "patient_id": {
+          "type": "keyword"
+        },
+        "encounter_id": {
+          "type": "keyword"
+        },
+        "event_type": {
+          "type": "keyword"
+        },
+        "severity": {
+          "type": "keyword"
+        },
+        "department": {
+          "type": "keyword",
+          "fields": {
+            "text": {
+              "type": "text"
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": 1,
+  "_meta": {
+    "description": "Healthcare event fields for NERP demos"
+  }
+}
