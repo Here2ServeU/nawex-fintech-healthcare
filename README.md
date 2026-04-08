@@ -198,6 +198,23 @@ make clean
 
 `make clean` stops the stack and removes local Docker volumes and orphaned containers. This deletes persisted MongoDB and OpenSearch data created by the project.
 
+Equivalent Docker commands:
+
+```bash
+docker compose down
+docker compose down -v --remove-orphans
+```
+
+Use `docker compose down` to stop and remove the project containers and network while preserving volumes.
+
+Use `docker compose down -v --remove-orphans` to also remove named volumes and orphaned containers. This deletes persisted MongoDB and OpenSearch data created by the project.
+
+If you also want to remove the locally built application images for a full rebuild:
+
+```bash
+docker compose down -v --remove-orphans --rmi local
+```
+
 ## Services
 
 - API: `http://localhost:5001` by default, or `http://localhost:${HOST_API_PORT}`
