@@ -24,4 +24,4 @@
 
 ## Final Portfolio Repo
 
-- `final-project/nerp-lite-ai-devops-platform/`
+- `final-project/`

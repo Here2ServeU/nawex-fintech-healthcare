@@ -36,6 +36,6 @@ Each week folder contains only the code surface needed for that week.
 
 The final integrated product repo lives in:
 
-- `../final-project/nerp-lite-ai-devops-platform/`
+- `../final-project/`
 
 Use that repo for Week 12 demos, portfolio packaging, and employer-facing presentation.
