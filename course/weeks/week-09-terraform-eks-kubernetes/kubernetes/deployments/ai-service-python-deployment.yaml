@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-service-python
+  namespace: nerp-lite
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ai-service-python
+  template:
+    metadata:
+      labels:
+        app: ai-service-python
+    spec:
+      containers:
+        - name: ai-service-python
+          image: nerp/ai-service-python:latest
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000

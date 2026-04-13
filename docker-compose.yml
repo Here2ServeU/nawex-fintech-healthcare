@@ -1,81 +1,82 @@
 services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.6.10
+  postgres:
+    image: pgvector/pgvector:pg15
+    container_name: nerp-postgres
     environment:
-      - ZOOKEEPER_CLIENT_PORT=2181
-      - ZOOKEEPER_TICK_TIME=2000
+      POSTGRES_DB: nerp_dev
+      POSTGRES_USER: nerp_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "2181:2181"
-
-  kafka:
-    image: confluentinc/cp-kafka:7.6.10
-    depends_on:
-      - zookeeper
-    ports:
-      - "9092:9092"
-      - "29092:29092"
-    environment:
-      - KAFKA_BROKER_ID=1
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
-      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-
-  mongodb:
-    image: mongo:6
-    container_name: nerp-mongodb
-    ports:
-      - "27017:27017"
+      - "5432:5432"
     volumes:
-      - mongo_data:/data/db
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nerp_user -d nerp_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  opensearch:
-    image: opensearchproject/opensearch:2.19.1
-    container_name: nerp-opensearch
-    environment:
-      - discovery.type=single-node
-      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
-      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
-    ports:
-      - "9200:9200"
-      - "9600:9600"
-    volumes:
-      - opensearch_data:/usr/share/opensearch/data
-
-  dashboards:
-    image: opensearchproject/opensearch-dashboards:2.19.1
-    container_name: nerp-opensearch-dashboards
-    volumes:
-      - ./storage/opensearch/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
-    ports:
-      - "5601:5601"
-    depends_on:
-      - opensearch
-
-  api:
+  api-node:
     build:
-      context: ./api
-    container_name: nerp-api
+      context: ./api-node
+    container_name: nerp-api-node
     ports:
-      - "${HOST_API_PORT:-5001}:5000"
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      DATABASE_URL: postgres://nerp_user:${DB_PASSWORD}@postgres:5432/nerp_dev
+      AI_SERVICE_URL: http://ai-service-python:8000
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY}
     depends_on:
-      - kafka
-      - mongodb
-      - opensearch
-    env_file:
-      - .env
+      postgres:
+        condition: service_healthy
 
-  dashboard:
+  ai-service-python:
     build:
-      context: ./dashboard
-    container_name: nerp-dashboard
+      context: ./ai-service-python
+    container_name: nerp-ai-service-python
+    ports:
+      - "8000:8000"
+    environment:
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY}
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: nerp-frontend
     ports:
       - "3000:3000"
+    environment:
+      REACT_APP_API_BASE_URL: http://localhost:5000
     depends_on:
-      - api
+      - api-node
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: nerp-prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api-node
+      - ai-service-python
+
+  grafana:
+    image: grafana/grafana:11.1.4
+    container_name: nerp-grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - ./monitoring/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
 
 volumes:
-  mongo_data:
-  opensearch_data:
+  postgres_data:

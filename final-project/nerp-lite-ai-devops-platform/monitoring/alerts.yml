@@ -1,0 +1,18 @@
+groups:
+  - name: nerp-lite-alerts
+    rules:
+      - alert: ApiNodeDown
+        expr: up{job="api-node"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "api-node is unreachable"
+
+      - alert: AiServiceDown
+        expr: up{job="ai-service-python"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "ai-service-python is unreachable"

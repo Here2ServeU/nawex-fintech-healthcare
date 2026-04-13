@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nerp-dashboard
+  namespace: nerp-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nerp-dashboard
+  template:
+    metadata:
+      labels:
+        app: nerp-dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: nerp-dashboard:latest
+          ports:
+            - containerPort: 3000

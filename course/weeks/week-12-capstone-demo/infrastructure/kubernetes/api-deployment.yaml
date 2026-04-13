@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nerp-api
+  namespace: nerp-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nerp-api
+  template:
+    metadata:
+      labels:
+        app: nerp-api
+    spec:
+      containers:
+        - name: api
+          image: nerp-api:latest
+          ports:
+            - containerPort: 5000
