@@ -1,23 +1,23 @@
 # Course Syllabus
 
-This syllabus maps each week to a separate teaching repo, a core objective, and the code surface students should use.
+This syllabus maps each week to a public weekly overview, the core objective, and the practical outcome students should reach.
 
 ## 12-Week Map
 
-| Week | Repo directory | Objective | Code surface for the week | Student outcome |
-|---|---|---|---|---|
-| 1 | `weeks/week-01-system-setup/` | Understand system thinking and local service architecture | `frontend/`, `api-node/`, `ai-service-python/` | Student can explain how the services connect and run health endpoints locally |
-| 2 | `weeks/week-02-docker-basics/` | Learn Docker and container lifecycle | `frontend/`, `api-node/`, `ai-service-python/` | Student can build and run service containers |
-| 3 | `weeks/week-03-compose-orchestration/` | Orchestrate a full local stack | `frontend/`, `api-node/`, `ai-service-python/`, `database/`, `docker-compose.yml` | Student can run the full stack with one command and explain service communication |
-| 4 | `weeks/week-04-terraform-foundations/` | Learn infrastructure as code | `terraform/` | Student can explain Terraform basics and run a plan for VPC and EC2 |
-| 5 | `weeks/week-05-fintech-transactions/` | Build the FinTech system layer | `api-node/`, `frontend/`, `database/` | Student can explain transaction flow and build a transaction endpoint |
-| 6 | `weeks/week-06-fraud-detection-ai/` | Add FinTech AI | `api-node/`, `ai-service-python/`, `frontend/`, `database/` | Student can connect fraud detection logic to the application flow |
-| 7 | `weeks/week-07-healthcare-patient-api/` | Build the Healthcare system layer | `api-node/`, `frontend/`, `database/` | Student can implement and explain a patient workflow API |
-| 8 | `weeks/week-08-healthcare-risk-ai/` | Add Healthcare AI | `api-node/`, `ai-service-python/`, `frontend/`, `database/` | Student can connect healthcare risk prediction to the application flow |
-| 9 | `weeks/week-09-terraform-eks-kubernetes/` | Deploy infrastructure and workloads | `terraform/`, `kubernetes/` | Student can explain the difference between infrastructure provisioning and workload deployment |
-| 10 | `weeks/week-10-observability-monitoring/` | Add production visibility | `monitoring/`, `api-node/`, `ai-service-python/` | Student can show metrics, alerts, and dashboard flow |
-| 11 | `weeks/week-11-cicd-security/` | Add CI/CD and secure delivery practices | `.github/`, `terraform/`, `api-node/`, `ai-service-python/`, `frontend/` | Student can explain automated delivery and basic secure deployment flow |
-| 12 | `weeks/week-12-capstone-demo/` | Integrate the full system | Full repo contents in that week folder | Student can demo and explain the full AI + DevOps + Cloud platform |
+| Week | Weekly overview | Objective | Student outcome |
+|---|---|---|---|
+| 1 | `weeks/week-01-system-setup/README.md` | Understand system thinking and local service architecture | Student can explain how the services connect and run health endpoints locally |
+| 2 | `weeks/week-02-docker-basics/README.md` | Learn Docker and container lifecycle | Student can explain how the services are containerized and started |
+| 3 | `weeks/week-03-compose-orchestration/README.md` | Orchestrate a full local stack | Student can explain how a multi-service local stack communicates end to end |
+| 4 | `weeks/week-04-terraform-foundations/README.md` | Learn infrastructure as code | Student can explain Terraform basics and the purpose of foundational cloud resources |
+| 5 | `weeks/week-05-fintech-transactions/README.md` | Build the FinTech system layer | Student can explain transaction flow and the role of application APIs |
+| 6 | `weeks/week-06-fraud-detection-ai/README.md` | Add FinTech AI | Student can explain how fraud detection fits into the application flow |
+| 7 | `weeks/week-07-healthcare-patient-api/README.md` | Build the Healthcare system layer | Student can explain a patient workflow API and its data model |
+| 8 | `weeks/week-08-healthcare-risk-ai/README.md` | Add Healthcare AI | Student can explain how healthcare risk prediction fits into the platform |
+| 9 | `weeks/week-09-terraform-eks-kubernetes/README.md` | Deploy infrastructure and workloads | Student can explain the difference between infrastructure provisioning and workload deployment |
+| 10 | `weeks/week-10-observability-monitoring/README.md` | Add production visibility | Student can explain metrics, alerts, and dashboard flow |
+| 11 | `weeks/week-11-cicd-security/README.md` | Add CI/CD and secure delivery practices | Student can explain automated delivery and secure deployment concepts |
+| 12 | `weeks/week-12-capstone-demo/README.md` | Integrate the full system | Student can explain the final AI + DevOps + Cloud platform as one product |
 
 ## Phase Breakdown
 

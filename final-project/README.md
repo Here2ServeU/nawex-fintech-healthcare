@@ -1,190 +1,43 @@
-# AI-Powered DevOps Reliability Platform (NERP Lite)
+# Nawex Platform Final Project
 
-A flagship, portfolio-grade project that combines AI, DevOps, cloud infrastructure, Terraform, Kubernetes, and domain AI extensions.
+This folder now presents the capstone as a public architecture overview rather than a runnable codebase.
 
-This README is the project entry point for capstone, portfolio, and employer-facing use.
+Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. This capstone is the public expression of that combined research and delivery perspective.
 
-## Mentor Background
+It shows the major domains that the course brings together into one AI-enabled platform:
 
-By way of background, I currently operate in DevOps and cloud engineering, and I am also a PhD researcher focused on AI, machine learning, and robotics applied to highly regulated environments. In addition, I have worked with clients for over 10 years on technology and transformation initiatives. This mentorship combines that perspective with practical, real-world execution.
+- [frontend](./frontend/README.md)
+- [api-node](./api-node/README.md)
+- [ai-service-python](./ai-service-python/README.md)
+- [database](./database/README.md)
+- [monitoring](./monitoring/README.md)
+- [infrastructure](./infrastructure/README.md)
+- [kubernetes](./kubernetes/README.md)
 
-This project is designed to be:
+## Capstone Scope
 
-- a mini SaaS
-- a 12-week teaching vehicle
-- a portfolio differentiator
-- a consulting-ready demo system
+The full project is designed to demonstrate:
 
-## Product Vision
+- product-facing UI concepts
+- API orchestration and domain workflows
+- AI-assisted prediction and anomaly analysis
+- database design for multi-domain scenarios
+- infrastructure provisioning and platform thinking
+- Kubernetes deployment concepts
+- observability and production-readiness
 
-NERP Lite collects system data, predicts failures using AI, detects log anomalies, and provides a deployable cloud-native platform with Terraform, Kubernetes, and CI/CD.
-
-Core flow:
-
-```text
-User -> Web UI -> Node API -> Python AI Service -> Model Prediction
-                              ↓
-                        Logs and Metrics
-                              ↓
-                      Monitoring Stack
-                              ↓
-                     Alerts and Dashboard
-```
-
-Infrastructure flow:
+## System Flow
 
 ```text
-Terraform -> AWS (VPC, EKS, ECR)
-Kubernetes -> Deploy Services
-GitHub Actions -> CI/CD
+User -> Frontend -> API Layer -> AI Service
+                  -> Database
+                  -> Metrics and Operational Visibility
 ```
 
-## Flagship Repo Structure
+## Why This Public Version Exists
 
-```text
-frontend/
-api-node/
-ai-service-python/
-monitoring/
-infrastructure/
-  terraform/
-kubernetes/
-  deployments/
-  services/
-.github/workflows/
-README.md
-```
+This public version is meant for prospective students, hiring managers, and collaborators who want to understand what the capstone covers without exposing the full teaching implementation.
 
-## Core Components
+## Bio
 
-### `frontend/`
-
-React dashboard for:
-
-- reliability telemetry
-- AI incident predictions
-- FinTech fraud simulation
-- Healthcare risk simulation
-
-### `api-node/`
-
-Node.js application layer for:
-
-- incoming requests
-- reliability endpoints
-- domain APIs
-- communication with the AI service
-
-### `ai-service-python/`
-
-FastAPI AI service for:
-
-- incident prediction
-- log anomaly detection
-- fraud detection
-- patient risk prediction
-
-### `monitoring/`
-
-Prometheus and Grafana starter assets for:
-
-- metrics scraping
-- alerts
-- operational dashboards
-
-### `infrastructure/terraform/`
-
-Terraform modules aligned to the teaching path:
-
-- Week 4: VPC + EC2
-- Weeks 9-10: VPC + EKS
-- extension path for ECR and production delivery
-
-### `kubernetes/`
-
-Kubernetes manifests for workloads and services.
-
-## 12-Week Mapping
-
-### Weeks 1-4
-
-Build the local system:
-
-- frontend
-- api-node
-- ai-service-python
-- Docker
-- Docker Compose
-- Terraform introduction
-
-### Weeks 5-6
-
-Add FinTech AI:
-
-- transaction simulation
-- fraud detection
-
-### Weeks 7-8
-
-Add Healthcare AI:
-
-- patient simulation
-- risk prediction
-
-### Weeks 9-10
-
-Cloud delivery:
-
-- Terraform VPC
-- Terraform EKS
-- Kubernetes deployment
-
-### Week 11
-
-Production workflow:
-
-- GitHub Actions
-- secure pipeline patterns
-- deployment automation
-
-### Week 12
-
-Capstone demo:
-
-- upload metrics or logs
-- receive AI risk insights
-- show dashboard
-- explain cloud deployment
-
-## Local Run
-
-```bash
-cp .env.example .env
-docker compose up --build
-```
-
-Initialize demo data:
-
-```bash
-cd api-node
-npm install
-npm run db:migrate
-npm run db:seed
-```
-
-Open:
-
-- Frontend: `http://localhost:3000`
-- Node API: `http://localhost:5000/api/health`
-- Python AI service: `http://localhost:8000/health`
-- Prometheus: `http://localhost:9090`
-- Grafana: `http://localhost:3001`
-
-## Interview-Ready Statement
-
-> I built an AI-powered DevOps platform that predicts system failures, detects anomalies, integrates domain AI for FinTech and Healthcare, and deploys to AWS using Terraform and Kubernetes with CI/CD automation.
-
-## Notes
-
-- The new top-level product path is the canonical path for students and employers.
-- Older folders remain in the repository as transitional material but are no longer the primary project path.
+Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.

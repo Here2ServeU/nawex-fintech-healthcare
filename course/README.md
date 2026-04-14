@@ -1,92 +1,77 @@
-# AI + DevOps + Cloud + Terraform Course
+# AI Engineering Course
 
-This folder is the teaching container for the full program.
+This section is for people evaluating whether this course is the right fit.
 
-The course is organized around separate weekly repos so mentees only touch the code surface needed for that week. That reduces confusion, keeps the learning path focused, and makes each week feel like a manageable project instead of one giant monorepo.
+The public materials here show the structure of the program, the progression from week to week, and the kind of system students learn to build. The implementation details used during teaching are not included in this public version, but each weekly folder explains the focus, goals, and expected outcome for that stage of the course.
 
-This README is the teaching entry point.
+Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The course is built to reflect that combination of academic rigor and real-world execution.
 
-## Mentor Background
+## Who This Course Is For
 
-By way of background, I currently operate in DevOps and cloud engineering, and I am also a PhD researcher focused on AI, machine learning, and robotics applied to highly regulated environments. In addition, I have worked with clients for over 10 years on technology and transformation initiatives. This mentorship combines that perspective with practical, real-world execution.
+This course is designed for people who want to move beyond isolated tutorials and learn how AI fits into real software systems.
 
-## Why This Course Matters
+It is a good fit for:
 
-This course is designed around the skills that are in demand for modern AI engineering roles:
+- software engineers moving toward AI engineering
+- cloud or DevOps engineers who want to build AI-enabled products
+- self-taught builders who want a more structured path
+- students preparing for portfolio projects, technical interviews, or client-facing demos
 
-- building AI-enabled products, not just notebooks
-- connecting frontend, backend, and AI services
-- containerizing applications with Docker
-- orchestrating systems with Docker Compose and Kubernetes
-- provisioning infrastructure with Terraform
-- adding observability, CI/CD, and secure delivery practices
+## What You Learn
 
-The market increasingly rewards engineers who can ship AI into real systems. This course is built for that outcome.
+The course is built around practical system delivery, not just model experimentation.
 
-## What Students Learn
+By the end of the program, students should be able to:
 
-By the end of the course, students should be able to:
-
-- explain a multi-service AI system end to end
-- build and run local application stacks
-- connect Node.js and Python services
-- add domain AI workflows for FinTech and Healthcare
-- provision AWS infrastructure with Terraform
+- explain a multi-service AI platform end to end
+- connect frontend, backend, database, and AI services into one system
+- use Docker and Docker Compose for local development
+- provision cloud infrastructure with Terraform
 - deploy workloads with Kubernetes
-- add monitoring and CI/CD
-- present a flagship portfolio project credibly
+- add observability, CI/CD, and operational thinking
+- discuss the finished project clearly in interviews or professional settings
 
-## Teaching Model
+## What Makes The Course Different
 
-Use one weekly repo at a time.
+Instead of treating AI as a separate track, the course places it inside a broader engineering workflow.
 
-Do not teach from the entire repository at once.
+Students work through:
 
-Each week folder under `weeks/` contains only the code needed for that week’s learning objective.
+- application architecture
+- service integration
+- domain workflows in FinTech and Healthcare
+- infrastructure and deployment
+- monitoring and production-minded delivery
 
-## Course Structure
+The result is a stronger foundation for roles that expect real-world system thinking, not only notebook work.
 
-- `weeks/`
-  One repo-sized directory per teaching week
-- `SYLLABUS.md`
-  Week-by-week learning map
+## How The Course Is Structured
 
-The final employer-facing project lives outside this folder at:
+The program is organized as a 12-week path. Each week builds on the last and introduces one meaningful layer of the final platform.
 
-- [../final-project](../final-project/README.md)
+- Weeks 1-4: foundations, local architecture, containers, and Terraform
+- Weeks 5-8: domain expansion through FinTech and Healthcare AI workflows
+- Weeks 9-12: deployment, observability, CI/CD, and capstone integration
 
-## Weekly Repo Sequence
+You can explore the weekly breakdown in:
 
-1. `week-01-system-setup`
-2. `week-02-docker-basics`
-3. `week-03-compose-orchestration`
-4. `week-04-terraform-foundations`
-5. `week-05-fintech-transactions`
-6. `week-06-fraud-detection-ai`
-7. `week-07-healthcare-patient-api`
-8. `week-08-healthcare-risk-ai`
-9. `week-09-terraform-eks-kubernetes`
-10. `week-10-observability-monitoring`
-11. `week-11-cicd-security`
-12. `week-12-capstone-demo`
+- [SYLLABUS.md](./SYLLABUS.md)
+- [weeks](./weeks)
 
-## Recommended Delivery
+Each folder under `weeks/` contains a public `README.md` describing that week’s focus.
 
-For each week:
+## What You Can Review Here
 
-- teach one core concept
-- build one feature
-- run one demo
-- require one Git commit
-- ask the student to explain the system back to you
+If you are exploring the course, start with:
 
-## Best Use Of The Final Project
+- [SYLLABUS.md](./SYLLABUS.md) for the full week-by-week arc
+- any folder under [weeks](./weeks) to inspect a specific topic
+- [../final-project](../final-project/README.md) to see the kind of integrated capstone the course builds toward
 
-Use the weekly repos for instruction.
+## Outcome
 
-Use [../final-project](../final-project/README.md) for:
+The goal of the course is not only to teach tools. It is to help students build the judgment and technical range needed to design, ship, and explain an AI-enabled platform with confidence.
 
-- capstone integration
-- portfolio packaging
-- final demos
-- interview storytelling
+## Bio
+
+Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.

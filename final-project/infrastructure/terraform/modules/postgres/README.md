@@ -1,13 +1,16 @@
 # PostgreSQL Module
 
-Placeholder module for the workbook-aligned PostgreSQL layer.
+This module documents the relational database layer in the infrastructure design.
 
-Target responsibilities for the full curriculum implementation:
+It shows where managed PostgreSQL fits in the broader cloud architecture and how data infrastructure connects to application delivery.
 
-- AWS RDS PostgreSQL
-- subnet group placement in private subnets
-- encryption at rest
-- backup retention
-- Secrets Manager integration
+## Bio
 
-This repository keeps the Terraform scaffold lightweight while the application runtime now reflects the workbook stack.
+Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
+
+## Typical Responsibilities
+
+- managed PostgreSQL deployment
+- private subnet placement
+- encryption and backup considerations
+- secret and access-management integration
