@@ -2,6 +2,10 @@
 
 Public course repository for exploring a practical AI engineering program and the capstone system it builds toward.
 
+## What NAWEX Stands For
+
+NAWEX refers to Emmanuel Naweji's practical AI and platform engineering approach.
+
 Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The platform is intended to reflect that blend of research depth and real-world execution.
 
 This repo has two entry points:
