@@ -19,4 +19,4 @@ It covers how the course thinks about relational storage for multiple product su
 
 ## Bio
 
-Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
+Emmanuel Naweji works across DevOps and cloud engineering and is a Ph.D. candidate at National University, researching AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.

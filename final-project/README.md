@@ -4,7 +4,7 @@ This folder now presents the capstone as a public architecture overview rather t
 
 It is a preview of the capstone scope covered during the actual program.
 
-Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. This capstone is the public expression of that combined research and delivery perspective.
+Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's Ph.D. research (in progress, National University) in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. This capstone is the public expression of that combined research and delivery perspective.
 
 It shows the major domains that the course brings together into one AI-enabled platform:
 

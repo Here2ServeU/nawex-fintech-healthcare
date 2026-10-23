@@ -6,6 +6,6 @@ It is part of the public architecture map for explaining how provisioning and wo
 
 ## Bio
 
-Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
+Emmanuel Naweji works across DevOps and cloud engineering and is a Ph.D. candidate at National University, researching AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
 
 Placeholder Terraform module for cluster resources.

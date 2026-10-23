@@ -15,4 +15,4 @@ The remaining public READMEs outline the role each module plays in the architect
 
 ## Bio
 
-Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
+Emmanuel Naweji works across DevOps and cloud engineering and is a Ph.D. candidate at National University, researching AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.

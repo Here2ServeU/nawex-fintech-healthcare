@@ -8,7 +8,7 @@ This repository is a preview of the topics and system design covered during the 
 
 NAWEX refers to Emmanuel Naweji's practical AI and platform engineering approach.
 
-Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The platform is intended to reflect that blend of research depth and real-world execution.
+Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's Ph.D. research (in progress, National University) in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The platform is intended to reflect that blend of research depth and real-world execution.
 
 This repo has two entry points:
 
@@ -69,4 +69,4 @@ This repository is designed for:
 
 ## Bio
 
-Emmanuel Naweji works across DevOps and cloud engineering and is a PhD researcher focused on AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.
+Emmanuel Naweji works across DevOps and cloud engineering and is a Ph.D. candidate at National University, researching AI, machine learning, and robotics in regulated environments. He has spent more than 10 years helping clients deliver technology and transformation initiatives.

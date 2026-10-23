@@ -6,7 +6,7 @@ It is a preview of the topics and progression covered during the actual program.
 
 The public materials here show the structure of the program, the progression from week to week, and the kind of system students learn to build. The implementation details used during teaching are not included in this public version, but each weekly folder explains the focus, goals, and expected outcome for that stage of the course.
 
-Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's PhD research in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The course is built to reflect that combination of academic rigor and real-world execution.
+Nawex stands for a practical AI and platform engineering approach shaped by Emmanuel Naweji's Ph.D. research (in progress, National University) in AI, machine learning, and robotics for regulated environments, together with more than 10 years of hands-on delivery experience across DevOps, cloud engineering, and technology transformation. The course is built to reflect that combination of academic rigor and real-world execution.
 
 ## Who This Course Is For
 
